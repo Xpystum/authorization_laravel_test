@@ -17,15 +17,18 @@
                 <x-card.body>
 
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Создание аккаунта
+                        {{ __('Создание аккаунта') }}
                     </h1>
-                    <form class="form space-y-4 md:space-y-6" action="#">
+                    {{-- {{ route("registration.store") }} --}}
+                    <x-form action="{{ route('registration.store') }}" method="POST" class="form space-y-4 md:space-y-6">
 
                         <x-form.item>
                             <x-form.label>
                                 {{ __("Ваш логин") }}
                             </x-form.label>
                             <x-form.input type="text" name="login" placeholder="Login" autofocus/>
+
+
                         </x-form.item>
 
                         <x-form.item>
@@ -33,6 +36,7 @@
                                 {{ __("Ваш email") }}
                             </x-form.label>
                             <x-form.input type="email" name="email" placeholder="email@example.com" />
+
                         </x-form.item>
 
                         <x-form.item>
@@ -40,6 +44,7 @@
                                 {{ __("Ваш пароль") }}
                             </x-form.label>
                             <x-form.input type="password" name="password" placeholder="*******" />
+
                         </x-form.item>
 
                         <x-form.item>
@@ -47,12 +52,14 @@
                                 {{ __("Повторите пароль") }}
                             </x-form.label>
                             <x-form.input type="password" name="password_confirmation" placeholder="*******"/>
+
                         </x-form.item>
 
                         <x-form.item>
-                           <x-form.check>
+                           <x-form.check name="agreement">
                                 {{ __('Я Принимаю') }}
                            </x-form.check>
+
                         </x-form.item>
 
                         <x-button type="submit">Зарегистрироваться</x-button>
@@ -60,12 +67,13 @@
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                             Вы уже Зарегистрированы? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Нажмите войти</a>
                         </p>
-                    </form>
+
+                    </x-form>
 
                 </x-card.body>
 
             </x-card>
-            
+
         </div>
     </div>
   </section>
