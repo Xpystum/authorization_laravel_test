@@ -11,9 +11,10 @@
 
     <title>Аутенцификация</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    <script>
+    @vite('resources/css/app.css')
+    {{-- <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script> --}}
+    {{-- <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -72,13 +73,12 @@
                 }
             }
         }
-    </script>
+    </script> --}}
 </head>
 
 <body class="h-full">
 
     @yield('main.content')
-
 
 </body>
 

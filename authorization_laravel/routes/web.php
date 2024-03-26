@@ -10,4 +10,9 @@ Route::view('/registration', 'registration.index')->name('registration');
 Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
 
 
+// Route::view('/registration', 'registration.index')->name('registration');
+
+// Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
+
+
 

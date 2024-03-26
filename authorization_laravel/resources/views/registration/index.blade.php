@@ -19,7 +19,7 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         {{ __('Создание аккаунта') }}
                     </h1>
-                    {{-- {{ route("registration.store") }} --}}
+
                     <x-form action="{{ route('registration.store') }}" method="POST" class="form space-y-4 md:space-y-6">
 
                         <x-form.item>
@@ -65,7 +65,8 @@
                         <x-button type="submit">Зарегистрироваться</x-button>
 
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Вы уже Зарегистрированы? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Нажмите войти</a>
+                            {{-- route('login') --}}
+                            {{ __("Вы уже зарегистрированы?") }} <a href="" class="font-medium text-primary-600 hover:underline dark:text-primary-500">{{ __('Нажмите войти') }}</a>
                         </p>
 
                     </x-form>
@@ -76,7 +77,8 @@
 
         </div>
     </div>
-  </section>
+</section>
+
 
 
 @endsection
