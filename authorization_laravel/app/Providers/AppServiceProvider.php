@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         $this->setPasswordDefault();
     }
 
+    //установка дефолт значение для Password:default()
     private function setPasswordDefault(): void
     {
         Password::defaults(function () {

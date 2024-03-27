@@ -1,19 +1,44 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegistrationController;
-use App\Models\User;
+use App\Http\Controllers\User\SettingsController;
+
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/registration', 'registration.index')->name('registration');
-
-Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
+Route::redirect('/', '/registration');
 
 
-Route::view('/login', 'login.index')->name('login');
+Route::middleware('guest')->group(function () {
 
-Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+    //регистрация
+    Route::view('/registration', 'registration.index')->name('registration');
+    Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
+
+    //вход
+    Route::view('/login', 'login.index')->name('login');
+    Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+
+});
+
+
+
+//группа (кабинет пользователь)
+Route::middleware('auth', 'online')->prefix('user')->group(function () {
+
+    //выход
+    Route::post('/logout', [LogoutController::class, 'logout'])->name('user.logout');
+
+    //профиль user
+    Route::redirect('/', 'user/settings')->name('user');
+    Route::get('/settings', [SettingsController::class, 'index'])->name('user.settings');
+
+    Route::get('/test', fn () => 'Test');
+
+});
+
 
 
 

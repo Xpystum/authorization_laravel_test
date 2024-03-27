@@ -11,7 +11,10 @@
 
     <title>Аутенцификация</title>
 
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css','resources/js/app.js'])
+
+    {{-- скрипт --}}
+
     {{-- <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script> --}}
     {{-- <script>
@@ -80,6 +83,6 @@
 
     @yield('main.content')
 
-</body>
 
+</body>
 </html>

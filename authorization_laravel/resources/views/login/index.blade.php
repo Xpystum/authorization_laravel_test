@@ -3,6 +3,8 @@
 
 @section('main.content')
 
+
+
 <x-layouts.auth>
 
     <x-slot:title>

@@ -17,6 +17,8 @@ return new class extends Migration
 
             $table->timestamps();
 
+            $table->timestamp('online_at')->nullable();
+
 
 
             $table->string('login');
