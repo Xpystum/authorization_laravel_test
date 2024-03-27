@@ -19,7 +19,7 @@ class CreateUserCommand extends Command
 
         $user->email = $this->ask("Установите email User", 'test@gmail.com');
 
-        $user->password = $this->ask("Установите email User", 'pas123!');
+        $user->password = $this->ask("Установите email User", 'Pas123!');
 
         $user->save();
 
