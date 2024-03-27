@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Registratrion\StoreRequest;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -21,10 +22,11 @@ class RegistrationController extends Controller
 
         ]);
 
-        User::query()->create($data);
+        $user = User::query()->create($data);
 
+        Auth::login($user);
 
-        return redirect()->route('registration');
+        return redirect()->route('login');
 
     }
 }
