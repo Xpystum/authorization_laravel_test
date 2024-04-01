@@ -9,7 +9,12 @@ class SettingsController extends Controller
 {
     public function index(Request $request)
     {
+        $user = $request->user();
 
-        return view('user.settings.index');
+        // dd($user->gender->name());
+
+        return view('user.settings.index', [
+            'user' => $user,
+        ]);
     }
 }

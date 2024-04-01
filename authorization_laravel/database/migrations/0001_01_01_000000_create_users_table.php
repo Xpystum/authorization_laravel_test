@@ -26,6 +26,11 @@ return new class extends Migration
             $table->string('email')->unique();
 
 
+            //могут быть проблемы с enum
+            $table->enum('gender', ['male', 'female'])->nullable()->comment('Пол');
+
+
+
 
             $table->string('password');
 
