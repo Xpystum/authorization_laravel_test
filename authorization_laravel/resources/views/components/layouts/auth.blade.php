@@ -17,7 +17,6 @@
 
             {{ $slot }}
 
-
         </div>
     </div>
 </section>

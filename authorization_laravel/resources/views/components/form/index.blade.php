@@ -1,6 +1,6 @@
 @props(['action' => '#'])
 
-<form  action={{ $action }} {{ $attributes }} >
+<form action={{ $action }} {{ $attributes }} >
 
     @csrf
     {{ $slot }}
