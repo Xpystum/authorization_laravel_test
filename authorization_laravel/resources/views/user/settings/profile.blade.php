@@ -1,3 +1,4 @@
+<div class="profile">
 
 
 <x-title size="sm">
@@ -81,3 +82,5 @@
 
 
 
+
+</div>

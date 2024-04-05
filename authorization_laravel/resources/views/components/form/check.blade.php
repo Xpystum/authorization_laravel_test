@@ -8,7 +8,6 @@
     <div class="ml-3 text-sm">
         <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
             {{$slot}}
-            <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Условия и соглашение</a>
 
             <x-error name="{{ $name }}" />
         </label>

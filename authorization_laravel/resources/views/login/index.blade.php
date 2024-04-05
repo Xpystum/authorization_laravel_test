@@ -33,7 +33,7 @@
                     <x-form.label>
                         {{ __("Ваш email") }}
                     </x-form.label>
-                    <x-form.input type="email" name="email" placeholder="email@example.com" />
+                    <x-form.input type="email" name="email" placeholder="email@example.com" autofocus/>
                 </x-form.item>
 
                 <x-form.item>
@@ -45,16 +45,35 @@
 
 
                 <x-form.item>
-                   <x-form.check name="remember">
-                        {{ __('Запомнить меня') }}
-                   </x-form.check>
+                   <div class="flex justify-between">
+
+                        <div>
+                            <x-form.check name="remember">
+                                {{ __('Запомнить меня') }}
+                            </x-form.check>
+                        </div>
+
+                        <div>
+                            <x-link href="{{ route('password')  }}">
+                                {{ __("Забыли пароль?") }}
+                            </x-link>
+                        </div>
+
+                   </div>
+
+                   {{-- <div class="pt-5 underline">
+                        <x-link href="{{ route('password')  }}">
+                            {{ __("Забыли пароль?") }}
+                        </x-link>
+                    </div> --}}
+
                 </x-form.item>
 
                 <x-button type="submit">Войти</x-button>
 
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                     {{ __("У вас нету аккаунта?") }}
-                    <x-link to="{{ route('registration') }}">
+                    <x-link href="{{ route('registration') }}">
                         {{ __('Зарегистрироваться') }}
                     </x-link>
                 </p>

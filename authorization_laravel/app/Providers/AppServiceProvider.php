@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->setPasswordDefault();
+
+        Carbon::setLocale('ru');
+        CarbonImmutable::setLocale('ru');
     }
 
     //установка дефолт значение для Password:default()

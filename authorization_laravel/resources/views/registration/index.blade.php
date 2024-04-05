@@ -58,7 +58,8 @@
                 <x-form.item>
 
                    <x-form.check name="agreement">
-                        {{ __('Я Принимаю') }}
+                        {{ __('Я Принимаю ') }}
+                        <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Условия и соглашение</a>
                    </x-form.check>
 
                 </x-form.item>
@@ -67,7 +68,7 @@
 
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                     {{ __("У вас уже есть аккаунта?") }}
-                    <x-link to="{{ route('login') }}">
+                    <x-link href="{{ route('login') }}">
                         {{ __('Войти в аккаунт') }}
                     </x-link>
                 </p>

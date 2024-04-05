@@ -34,6 +34,8 @@ return new class extends Migration
 
             $table->string('password');
 
+            $table->timestamp('password_at')->nullable();
+
             $table->rememberToken();
 
         });

@@ -5,21 +5,21 @@
     <x-layouts.settings>
 
         <x-title size="sm">
-            {{ __('Изменить профиль') }}
+            {{ __('Изменить пароль') }}
 
             <x-slot:description>
-                {{ __('Введите новые персональные данные.') }}
+                {{ __('Введите текущий и новый пароль') }}
             </x-slot:description>
         </x-title>
 
-        <x-form action="{{ route('user.settings.profile.update') }}" method="POST">
+        <x-form action="{{ route('user.settings.password.update') }}" method="POST">
             <x-list>
 
                 <x-list.item>
 
                     <x-slot:name>
 
-                        {{ __('Имя аккаунта (Login)') }}
+                        {{ __('Текущий пароль') }}
 
                     </x-slot:name>
 
@@ -27,10 +27,9 @@
 
                         <div class="grid grid-cols-2">
                             <div class="col-span-2 md:col-span-1">
-                                <x-form.input name="login" :value="$user->login" />
+                                <x-form.input type='password' name="current_password" placeholder="******" autofocus/>
                             </div>
                         </div>
-
 
                     </x-slot:value>
 
@@ -40,21 +39,17 @@
 
                     <x-slot:name>
 
-                        {{ __('Пол') }}
+                        {{ __('Новый пароль') }}
 
                     </x-slot:name>
 
                     <x-slot:value>
 
-                    <div class="grid grid-cols-2">
-                        <div class="col-span-2 md:col-span-1">
-                            <x-form.select
-                                name='gender'
-                                :value="$user->gender?->value"
-                                :options="App\Enums\GenderEnum::select()"
-                            />
+                        <div class="grid grid-cols-2">
+                            <div class="col-span-2 md:col-span-1">
+                                <x-form.input type='password' name="new_password" placeholder="******"/>
+                            </div>
                         </div>
-                    </div>
 
                     </x-slot:value>
 

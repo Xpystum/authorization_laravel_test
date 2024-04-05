@@ -37,8 +37,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @property \Illuminate\Support\Carbon|null $online_at
  * @property \App\Enums\GenderEnum|null $gender
+ * @property \Illuminate\Support\Carbon|null $password_at
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereOnlineAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePasswordAt($value)
  */
 	class User extends \Eloquent {}
 }
