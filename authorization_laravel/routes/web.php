@@ -35,9 +35,9 @@ Route::middleware('guest')->group(function () {
         //страничка сообщение о переходе по ссылке из почты
         Route::view('/password/confirm', 'password.confirm')->name('password.confirm');
         //переход по ссылке из почты на страничку с уникальынм code и изменение пароля
-        Route::view('/password/{code}', 'password.edit')->name('password.edit');
+        Route::get('/password/{password:uuid}', [PasswordController::class, 'edit'])->name('password.edit')->whereUuid('password');
         //отправляем пароль и сохраняем для юзера
-        Route::post('/password/{code}', [PasswordController::class, 'update'])->name('password.update');
+        Route::post('/password/{password:uuid}', [PasswordController::class, 'update'])->name('password.update')->whereUuid('password');
 
 });
 
@@ -67,10 +67,10 @@ Route::middleware('auth', 'online')->prefix('user')->group(function () {
 });
 
 
-Route::get('/test', function () {
-    return (new ConfirmNotification)
-        ->toMail(User::query()->first());
-});
+// Route::get('/test', function () {
+//     return (new ConfirmNotification)
+//         ->toMail(User::query()->first());
+// });
 
 
 

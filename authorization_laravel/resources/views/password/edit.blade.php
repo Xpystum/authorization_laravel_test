@@ -19,7 +19,7 @@
                 {{ __('Восстановить пароль') }}
             </h1>
 
-            <x-form action="{{ route('password.update', 123) }}" method="POST" class="form space-y-4 md:space-y-6">
+            <x-form action="{{ route('password.update', $password->uuid) }}" method="POST" class="form space-y-4 md:space-y-6">
 
                 <x-form.item>
                     <x-form.label>
@@ -32,17 +32,21 @@
                     {{ __('Измнить пароль') }}
                 </x-button>
 
-                <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                    <x-link to="{{ route('login') }}">
-                        {{ __('Войти в аккаунт') }}
-                    </x-link>
-                </p>
-
             </x-form>
+
+            <p class="text-center text-sm font-light text-gray-500 dark:text-gray-400">
+                <x-link to="{{ route('login') }}">
+                    {{ __('Войти в аккаунт') }}
+                </x-link>
+            </p>
 
         </x-card.body>
 
+
+
     </x-card>
+
+
 
 </x-layouts.auth>
 

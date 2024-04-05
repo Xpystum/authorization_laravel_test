@@ -16,6 +16,34 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $uuid
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $email
+ * @property int|null $user_id
+ * @property string $status
+ * @property string $ip
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Password newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Password newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Password query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Password whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Password whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Password whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Password whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Password whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Password whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Password whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Password whereUuid($value)
+ */
+	class Password extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $login
  * @property string $email
  * @property mixed $password

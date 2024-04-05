@@ -2,48 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Password\StoreRequest;
 use App\Models\User;
-use App\Notifications\Password\ConfirmNotification;
+use App\Models\Password;
 use Illuminate\Http\Request;
+use App\Http\Requests\Password\StoreRequest;
+use App\Http\Requests\Password\UpdateRequest;
+use App\Notifications\Password\ConfirmNotification;
+use Auth;
 
 class PasswordController extends Controller
 {
 
     public function store(StoreRequest $request)
     {
+        $ip = $request->ip();
         $email = $request->input('email');
         //compact() пишем для создание массива или надо было указывать ->where('email', $email)
         $user = User::query()
                 ->where(compact('email'))
                 ->first();
+
+        $password = Password::query()
+            ->create(compact('ip' , 'email') + ['user_id' => $user?->id]);
+
         //ConfirmNotification - наш клас нотификации
-        $user?->notify(new ConfirmNotification);
+        $user?->notify(new ConfirmNotification($password));
 
 
        return to_route('password.confirm');
     }
 
-    // public function edit(Request $request)
-    // {
-    //     /** @var User */
-    //     $user = $request->user();
-
-
-    //     return view('user.settings.password.edit', [
-    //         'user' => $user,
-    //     ]);
-
-    // }
-
-    public function update(Request $request, string $code)
+    public function edit(Password $password)
     {
-        dd($code);
+
+        abort_unless($password->user_id, 404);
+
+        return view('password.edit', compact('password'));
+    }
+
+
+    public function update(UpdateRequest $request, Password $password)
+    {
+
+        abort_unless($password->user_id, 404);
+
         /** @var User */
-        $user = $request->user();
+        $user = $password->user;
 
-        $user->updatePassword($request->input('new_password'));
+        $user->updatePassword($request->input('password'));
 
-        return to_route('login');
+        Auth::login($user);
+
+        return to_route('user');
     }
 }
