@@ -11,6 +11,10 @@ enum PasswordStatusEnum : string
 
     case expired = 'expired';
 
+    public function is(PasswordStatusEnum $status): bool{
 
+        return $this === $status;
+
+    }
 
 }

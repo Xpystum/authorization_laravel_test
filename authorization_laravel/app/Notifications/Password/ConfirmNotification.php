@@ -29,6 +29,8 @@ class ConfirmNotification extends Notification implements ShouldQueue
         //опасно для безопасности
         // $url = route('password.edit', 123);
 
+
+        //делается для безопаности, что бы хаскер* не смог подменить домен
         $url = app_url("password/{$this->password->uuid}");
 
         return (new MailMessage)

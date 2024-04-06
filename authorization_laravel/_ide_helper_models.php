@@ -21,7 +21,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $email
  * @property int|null $user_id
- * @property string $status
+ * @property \App\Enums\Passwords\PasswordStatusEnum $status
  * @property string $ip
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Password newModelQuery()
