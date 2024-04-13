@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EmailConfirmedMiddleware;
 use App\Http\Middleware\OnlineMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -18,7 +19,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(OnlineMiddleware::class);
 
 
-        $middleware->alias(['online' => OnlineMiddleware::class]);
+        $middleware->alias([
+            'online' => OnlineMiddleware::class,
+            'emailConfirmation' => EmailConfirmedMiddleware::class,
+        ]);
 
 
     })

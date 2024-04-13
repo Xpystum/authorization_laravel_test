@@ -25,6 +25,8 @@ return new class extends Migration
 
             $table->string('email')->unique();
 
+            $table->timestamp('email_confirmed_at')->nullable();
+
 
             //могут быть проблемы с enum
             $table->enum('gender', ['male', 'female'])->nullable()->comment('Пол');

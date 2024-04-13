@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -41,10 +42,14 @@ Route::middleware('guest')->group(function () {
 
 });
 
+Route::get('/email/confirmation', [EmailController::class, 'confirmation'])->name('email.confirmation');
+
+
 
 
 //группа (кабинет пользователь)
-Route::middleware('auth', 'online')->prefix('user')->group(function () {
+    //'emailConfirmation' - можно вешать не на весь кабинет, а не нкоторые url
+Route::middleware('auth', 'online', /** 'emailConfirmation' */)->prefix('user')->group(function () {
 
     //выход
     Route::post('/logout', [LogoutController::class, 'logout'])->name('user.logout');
@@ -54,8 +59,14 @@ Route::middleware('auth', 'online')->prefix('user')->group(function () {
     Route::get('/settings', [SettingsController::class, 'index'])->name('user.settings');
 
     //редактирование профиля
-    Route::get('/settings/profile', [ProfileController::class, 'edit'])->name('user.settings.profile.edit');
-    Route::post('/settings/profile', [ProfileController::class, 'update'])->name('user.settings.profile.update');
+        //'emailConfirmation'- что бы редактировать нужно пройти проверку почты
+    Route::middleware('emailConfirmation')->group(function(){
+
+        Route::get('/settings/profile', [ProfileController::class, 'edit'])->name('user.settings.profile.edit');
+        Route::post('/settings/profile', [ProfileController::class, 'update'])->name('user.settings.profile.update');
+
+    });
+
 
 
     //изменение пароля

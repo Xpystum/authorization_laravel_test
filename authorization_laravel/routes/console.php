@@ -9,5 +9,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 
-//обновление статусов заявок на сброс пароля
+//обновление статусов заявок на сброс пароля - everyTwoHours() - каждые 2 часа
 Schedule::command(ExpirePasswordsCommand::class)->everyTwoHours(); // настройть крон на сервере для запуска команды

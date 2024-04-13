@@ -56,7 +56,7 @@ class Password extends Model
     {
 
         if($this->status->is($status)){
-            
+
             return false;
 
         }

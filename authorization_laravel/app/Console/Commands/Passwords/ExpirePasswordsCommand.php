@@ -28,7 +28,5 @@ class ExpirePasswordsCommand extends Command
             ->where('status', PasswordStatusEnum::pending)
             ->where('created_at', '<=' , now()->subHours(3))
             ->update(['status' => PasswordStatusEnum::expired]);
-
-        $this->info($password);
     }
 }
