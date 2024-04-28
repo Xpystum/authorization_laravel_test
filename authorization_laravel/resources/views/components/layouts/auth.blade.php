@@ -17,6 +17,7 @@
 
             {{ $slot }}
 
+
         </div>
     </div>
 </section>

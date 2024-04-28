@@ -15,13 +15,40 @@ namespace App\Models{
 /**
  * 
  *
+ * @property EmailStatusEnum $status
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Email newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Email newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Email query()
+ * @property int $id
+ * @property string $uuid
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $value
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Email whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Email whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Email whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Email whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Email whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Email whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Email whereValue($value)
+ * @mixin \Eloquent
+ */
+	class Email extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property int $id
  * @property string $uuid
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $email
  * @property int|null $user_id
- * @property \App\Enums\Passwords\PasswordStatusEnum $status
+ * @property PasswordStatusEnum $status
  * @property string $ip
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Password newModelQuery()
@@ -35,6 +62,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Password whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Password whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Password whereUuid($value)
+ * @mixin \Eloquent
  */
 	class Password extends \Eloquent {}
 }
@@ -65,12 +93,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @property \Illuminate\Support\Carbon|null $online_at
  * @property \Illuminate\Support\Carbon|null $email_confirmed_at
- * @property \App\Enums\GenderEnum|null $gender
+ * @property GenderEnum|null $gender
  * @property \Illuminate\Support\Carbon|null $password_at
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailConfirmedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereOnlineAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePasswordAt($value)
+ * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
 }

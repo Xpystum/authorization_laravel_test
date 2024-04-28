@@ -12,6 +12,8 @@ use Illuminate\Notifications\Notifiable;
 
 
 /**
+ *
+ *
  * @property int $id
  * @property string $login
  * @property string $email
@@ -32,6 +34,15 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @property \Illuminate\Support\Carbon|null $online_at
+ * @property \Illuminate\Support\Carbon|null $email_confirmed_at
+ * @property GenderEnum|null $gender
+ * @property \Illuminate\Support\Carbon|null $password_at
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailConfirmedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGender($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereOnlineAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePasswordAt($value)
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
@@ -90,8 +101,27 @@ class User extends Authenticatable
         ]);
     }
 
+
+
+    /**
+     *
+     *  Проверяет, подтвержден ли email у пользователя.
+     *
+     * @return bool
+     */
     public function isEmailConfirmed() : bool
     {
         return ($this->email_confirmed_at == null) ? false : true;
+    }
+
+    /**
+     *
+     * подтрвеждение email у пользователя.
+     *
+     * @return bool
+     */
+    public function confirmEmail() : bool
+    {
+        return $this->update(['email_confirmed_at' => now()]);
     }
 }

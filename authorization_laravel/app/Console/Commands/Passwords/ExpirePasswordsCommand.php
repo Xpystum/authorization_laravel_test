@@ -24,7 +24,7 @@ class ExpirePasswordsCommand extends Command
 
     private function expirePasswords(): void
     {
-        $password = Password::query()
+        Password::query()
             ->where('status', PasswordStatusEnum::pending)
             ->where('created_at', '<=' , now()->subHours(3))
             ->update(['status' => PasswordStatusEnum::expired]);

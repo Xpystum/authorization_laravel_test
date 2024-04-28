@@ -20,9 +20,22 @@
 
         </x-card.body>
 
+
+
+
+
+        <x-link class="btn" href="#" x-data x-on:click.prevent="$refs.form.submit">
+            {{ __('Отправить ещё раз') }}
+            <x-form x-ref="form" action={{ route('email.confirmation.send') }} method="post" class="d-none"/>
+        </x-link>
+
     </x-card>
 
+
+
 </x-layouts.auth>
+
+
 
 @endsection
 

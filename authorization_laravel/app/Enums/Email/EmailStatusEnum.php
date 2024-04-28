@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enums\Passwords;
+namespace App\Enums\Email;
 
-enum PasswordStatusEnum : string
+enum EmailStatusEnum : string
 {
 
     case pending = 'pending';
@@ -13,7 +13,9 @@ enum PasswordStatusEnum : string
 
     public function is(self $status): bool
     {
+
         return $this === $status;
+
     }
 
 }

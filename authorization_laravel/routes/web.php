@@ -11,8 +11,9 @@ use App\Http\Controllers\User\Settings\ProfileController;
 use App\Http\Controllers\User\Settings\PasswordController as UserPasswordController;
 
 use App\Http\Controllers\PasswordController;
+use App\Models\Email;
 use App\Models\User;
-use App\Notifications\Password\ConfirmNotification;
+use App\Notifications\Email\ConfirmEmailNotification;
 
 Route::redirect('/', '/registration');
 
@@ -42,7 +43,10 @@ Route::middleware('guest')->group(function () {
 
 });
 
+// ->whereUuid('email') - проверять, или будет ошибка как с паролям выше*
 Route::get('/email/confirmation', [EmailController::class, 'confirmation'])->name('email.confirmation');
+Route::get('/email/confirmation/send', [EmailController::class, 'send'])->name('email.confirmation.send');
+Route::get('/email/{email:uuid}', [EmailController::class, 'link'])->name('email.confirmation.link')->whereUuid('email');
 
 
 
@@ -79,7 +83,7 @@ Route::middleware('auth', 'online', /** 'emailConfirmation' */)->prefix('user')-
 
 
 // Route::get('/test', function () {
-//     return (new ConfirmNotification)
+//     return (new ConfirmEmailNotification(Email::query()->first()))
 //         ->toMail(User::query()->first());
 // });
 
