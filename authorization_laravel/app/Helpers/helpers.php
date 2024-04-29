@@ -25,3 +25,8 @@ function uuid(string $path = '') : string
 
 }
 
+function code() : string
+{
+    return (string) rand(100_000, 999_999);
+}
+

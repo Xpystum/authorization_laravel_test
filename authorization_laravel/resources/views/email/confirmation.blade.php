@@ -18,6 +18,29 @@
 
             {{ __('Перейдите по ссылке из письма, отправленного на ваш email для подтверждения пароля.') }}
 
+            <div class="pt-4">
+                {{ __('Или введите код подтверждения:') }}
+
+                <x-form class="mt-3" action="{{ route('email.confirmation.code', $email->uuid) }}" method="post">
+                    <div class="grid grid-cols-5 gap-x-3">
+                        <div class="col-span-3">
+                            <x-form.input name="code" placeholder="123456" inputmode="decimal" autofocus>
+
+                            </x-form.input>
+                        </div>
+
+                        <div class="col-span-2">
+
+                            <x-button type="submit">
+                                {{ __('Подтвердить') }}
+                            </x-button>
+
+                        </div>
+                    </div>
+                </x-form>
+            </div>
+
+
         </x-card.body>
 
 
@@ -25,7 +48,7 @@
             <x-link x-data x-on:click.prevent="$refs.form.submit()" >
                 {{ __('Отправить ещё раз') }}
 
-                <x-form class="d-none" x-ref="form" action="{{ route('email.confirmation.send') }}" method="post"/>
+                <x-form class="d-none" x-ref="form" action="{{ route('email.confirmation.send', $email->uuid) }}" method="post"/>
             </x-link>
 
         </div>

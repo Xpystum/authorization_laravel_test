@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('value')->comment('email пользователя');
             $table->foreignId('user_id')->constrained();
             $table->string('status')->default(EmailStatusEnum::pending);
+            $table->string('code', 10);
 
         });
     }

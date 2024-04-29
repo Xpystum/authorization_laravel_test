@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * 
+ *
  *
  * @property EmailStatusEnum $status
  * @property-read \App\Models\User|null $user
@@ -47,6 +47,8 @@ class Email extends Model
 
         'status',
 
+        'code',
+
     ];
 
     protected $casts = [
@@ -70,6 +72,15 @@ class Email extends Model
         }
 
         return $this->update(['status' => $status]);
+    }
+
+    public static function booted(): void
+    {
+        self::creating( function(Email $email) {
+
+            $email->code = code();
+
+        });
     }
 
     //этот метод берём теперь из trait

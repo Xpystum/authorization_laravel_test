@@ -10,19 +10,21 @@ use Illuminate\Http\Request;
 
 class EmailController extends Controller
 {
-    public function confirmation(Request $request)
+    public function index(Request $request)
     {
 
         /** @var User */
         $user = $request->user();
 
-        if($user && $user->isEmailConfirmed()){
+        abort_if($user->isEmailConfirmed(), 404);
 
-            return redirect()->intended('/user');
 
-        }
+        $email = Email::query()
+                    ->where('user_id', $user->id)
+                    ->where('status', EmailStatusEnum::pending)
+                    ->firstOrFail();
 
-        return view('email.confirmation');
+        return view('email.confirmation', compact('email'));
     }
 
     public function link(Request $request, Email $email)
@@ -41,20 +43,45 @@ class EmailController extends Controller
         return redirect()->intended('/user');
     }
 
-    public function send(Request $request)
+    public function code(Request $request, Email $email)
+    {
+
+        abort_if($email->user->isEmailConfirmed(), 404);
+
+        abort_unless($email->status->is(EmailStatusEnum::pending), 404);
+
+        $validated = $request->validate([
+
+            'code' => 'required|string',
+
+        ]);
+
+        if($email->code !== $validated['code']){
+
+            return back()->withErrors(['code' => 'Неверный код']);
+
+        };
+
+
+
+
+        //засорение контроллера?
+        $email->user->confirmEmail();
+
+        $email->updateStatus(EmailStatusEnum::completed);
+
+
+        return redirect()->intended('/user');
+    }
+
+    public function send(Request $request, Email $email)
     {
         /** @var User */
         $user = $request->user();
-        //обязательно проверяем существует ли user
-        abort_unless($user, 404);
-        abort_if($user->isEmailConfirmed(), 404);
 
-        #TODO почта
-        //нужно делать логику на проверку expired запросов и completed или будет ошибка
-        $email = Email::query()
-            ->where('user_id', $user->id)
-            ->where('status', EmailStatusEnum::pending)
-            ->firstOrFail();
+        abort_if($email->user->isEmailConfirmed(), 404);
+
+        abort_unless($email->status->is(EmailStatusEnum::pending), 404);
 
 
         $norification = new ConfirmEmailNotification($email);

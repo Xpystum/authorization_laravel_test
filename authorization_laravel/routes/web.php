@@ -43,11 +43,23 @@ Route::middleware('guest')->group(function () {
 
 });
 
-// ->whereUuid('email') - проверять, или будет ошибка как с паролям выше*
-Route::get('/email/confirmation', [EmailController::class, 'confirmation'])->name('email.confirmation');
-Route::post('/email/confirmation/send', [EmailController::class, 'send'])->name('email.confirmation.send');
-Route::get('/email/{email:uuid}', [EmailController::class, 'link'])->name('email.confirmation.link')->whereUuid('email');
 
+//Работа с подтверждением почты
+Route::middleware('auth')->group(function(){
+
+    // ->whereUuid('email') - проверять, или будет ошибка как с паролям выше*
+    Route::get('/email/confirmation', [EmailController::class, 'index'])->name('email.confirmation');
+
+    //повторная отправка на почту
+    Route::post('/email/{email:uuid}/send', [EmailController::class, 'send'])->name('email.confirmation.send');
+
+    //подтрвеждения по коду
+    Route::post('/email/{email:uuid}/code', [EmailController::class, 'code'])->name('email.confirmation.code')->whereUuid('email');
+
+    //подтрвеждения по ссылке из письма (может перейти из другого устройства)
+    Route::get('/email/{email:uuid}/link', [EmailController::class, 'link'])->name('email.confirmation.link')->whereUuid('email')->withoutMiddleware('auth');
+
+});
 
 
 

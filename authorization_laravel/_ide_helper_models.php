@@ -34,6 +34,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Email whereUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Email whereValue($value)
  * @mixin \Eloquent
+ * @property string $code
+ * @method static \Illuminate\Database\Eloquent\Builder|Email whereCode($value)
  */
 	class Email extends \Eloquent {}
 }
