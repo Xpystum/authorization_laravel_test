@@ -21,7 +21,7 @@
             <div class="pt-4">
                 {{ __('Или введите код подтверждения:') }}
 
-                <x-form class="mt-3" action="{{ route('email.confirmation.code', $email->uuid) }}" method="post">
+                <x-form class="mt-3" action="{{ route('email.confirm', $email->uuid) }}" method="post">
                     <div class="grid grid-cols-5 gap-x-3">
                         <div class="col-span-3">
                             <x-form.input name="code" placeholder="123456" inputmode="decimal" autofocus>
@@ -48,7 +48,7 @@
             <x-link x-data x-on:click.prevent="$refs.form.submit()" >
                 {{ __('Отправить ещё раз') }}
 
-                <x-form class="d-none" x-ref="form" action="{{ route('email.confirmation.send', $email->uuid) }}" method="post"/>
+                <x-form class="d-none" x-ref="form" action="{{ route('email.send', $email->uuid) }}" method="post"/>
             </x-link>
 
         </div>

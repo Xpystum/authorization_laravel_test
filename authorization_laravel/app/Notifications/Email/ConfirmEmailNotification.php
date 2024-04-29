@@ -32,7 +32,7 @@ class ConfirmEmailNotification extends Notification implements ShouldQueue
 
 
         //делается для безопаности, что бы хаскер* не смог подменить домен
-        $url = app_url("email/{$this->email->uuid}/link");
+        $url = app_url("email/{$this->email->uuid}/confirm?code={$this->email->code}");
 
         return (new MailMessage)
                     ->subject('Подтверждение почты')
