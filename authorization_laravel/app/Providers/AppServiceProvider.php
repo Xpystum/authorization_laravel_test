@@ -33,10 +33,10 @@ class AppServiceProvider extends ServiceProvider
         CarbonImmutable::setLocale('ru');
 
         //Событие
-        Event::listen(
-            UserCreatedEvent::class,
-            SendConfirmEmailNotificationListener::class,
-        );
+        // Event::listen(
+        //     UserCreatedEvent::class,
+        //     SendConfirmEmailNotificationListener::class,
+        // );
     }
 
     //установка дефолт значение для Password:default()

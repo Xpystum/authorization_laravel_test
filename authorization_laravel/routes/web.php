@@ -45,7 +45,7 @@ Route::middleware('guest')->group(function () {
 
 // ->whereUuid('email') - проверять, или будет ошибка как с паролям выше*
 Route::get('/email/confirmation', [EmailController::class, 'confirmation'])->name('email.confirmation');
-Route::get('/email/confirmation/send', [EmailController::class, 'send'])->name('email.confirmation.send');
+Route::post('/email/confirmation/send', [EmailController::class, 'send'])->name('email.confirmation.send');
 Route::get('/email/{email:uuid}', [EmailController::class, 'link'])->name('email.confirmation.link')->whereUuid('email');
 
 

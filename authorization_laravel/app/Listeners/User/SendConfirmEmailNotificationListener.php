@@ -23,7 +23,6 @@ class SendConfirmEmailNotificationListener implements ShouldQueue
         ]);
 
         $notification = new ConfirmEmailNotification($email);
-
         $event->user->notify($notification);
 
     }

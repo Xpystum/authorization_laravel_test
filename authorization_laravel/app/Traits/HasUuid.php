@@ -10,9 +10,9 @@ trait HasUuid
     {
 
         //forceFill - если поле в модели не прописано, в $fillable - то оно все равно заполнится
-        static::creating(function (Model $email){
+        static::creating(function (Model $model){
 
-            $email->forceFill([
+            $model->forceFill([
                 'uuid' => uuid(),
             ]);
 
