@@ -71,6 +71,9 @@ Route::middleware('auth', 'online', /** 'emailConfirmation' */)->prefix('user')-
     Route::redirect('/', 'user/settings')->name('user');
     Route::get('/settings', [SettingsController::class, 'index'])->name('user.settings');
 
+    //если использовать livewire то возвращаем страничку
+    Route::view('/settings/email', 'user.settings.email.edit')->name('user.settings.email.edit');
+
     //редактирование профиля
         //'emailConfirmation'- что бы редактировать нужно пройти проверку почты
     Route::middleware('emailConfirmation')->group(function(){

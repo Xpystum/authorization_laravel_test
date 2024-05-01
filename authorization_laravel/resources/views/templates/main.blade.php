@@ -13,11 +13,15 @@
 
     @vite(['resources/css/app.css','resources/js/app.js'])
 
+    @livewireStyles
+    @livewireScripts
+
 </head>
 
 <body class="h-full">
 
     @yield('main.content')
+
 
 </body>
 </html>
