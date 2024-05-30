@@ -69,7 +69,7 @@ class EmailController extends Controller
     {
         /** @var User */
         $user = $request->user();
-
+        
         abort_if($email->user->isEmailConfirmed(), 404);
 
         abort_unless($email->status->is(EmailStatusEnum::pending), 404);

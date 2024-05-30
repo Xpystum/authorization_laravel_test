@@ -11,7 +11,7 @@ class RegistrationController extends Controller
 {
     public function store(StoreRequest $request)
     {
-
+        dd(1);
         $data = $request->except([
 
             '_token',

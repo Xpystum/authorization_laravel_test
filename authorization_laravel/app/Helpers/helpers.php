@@ -20,9 +20,7 @@ function app_url(string $path = ''){
 
 function uuid(string $path = '') : string
 {
-
     return (string) Str::uuid();
-
 }
 
 function code() : string

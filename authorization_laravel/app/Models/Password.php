@@ -60,21 +60,6 @@ class Password extends Model
 
     ];
 
-    //этот метод берём теперь из trait
-    // public static function booted() : void
-    // {
-    //     static::creating(function (Password $password){
-
-    //         $password->fill([
-    //             'uuid' => uuid(),
-    //         ]);
-    //         // $password->uuid = uuid();
-
-    //     });
-
-    // }
-
-
 
     public function user(): BelongsTo
     {

@@ -19,7 +19,6 @@ Route::redirect('/', '/registration');
 
 
 Route::middleware('guest')->group(function () {
-
     //регистрация
         Route::view('/registration', 'registration.index')->name('registration');
         Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
